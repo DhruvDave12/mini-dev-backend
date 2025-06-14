@@ -19,4 +19,4 @@ export const getUserFromToken = async (token: string) => {
 export const testingToken = async (token: string) => {
   const user = await admin.auth().verifyIdToken(token);
   return user;
-}
+};

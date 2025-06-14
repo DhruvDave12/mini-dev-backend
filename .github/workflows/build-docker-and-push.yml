@@ -21,8 +21,7 @@ jobs:
           echo "OPENAI_MODEL_NAME=${{ secrets.OPENAI_MODEL_NAME }}" >> .env
           echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
           echo "PINECONE_API_KEY=${{ secrets.PINECONE_API_KEY }}" >> .env
-          echo "PINECONE_ENVIRONMENT=${{ secrets.PINECONE_ENVIRONMENT }}" >> .env
-        
+
       - name: Build the Docker Image for Mini Dev Backend
         run: docker-compose build --no-cache --force-rm
 
@@ -49,7 +48,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_PASSWORD }}
-      
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5
@@ -58,10 +57,8 @@ jobs:
 
       - name: Build and Push Docker image to Docker Hub
         uses: docker/build-push-action@v2
-        with: 
+        with:
           context: "{{defaultContext}}"
           push: true
           tags: ${{steps.meta.outputs.tags}}
-          labels: ${{steps.meta.output.labels}}        
-
-  
+          labels: ${{steps.meta.output.labels}}

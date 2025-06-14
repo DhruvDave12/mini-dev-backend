@@ -7,5 +7,4 @@ export const ENV = {
   OPENAI_MODEL_NAME: process.env.OPENAI_MODEL_NAME,
   JWT_SECRET: process.env.JWT_SECRET,
   PINECONE_API_KEY: process.env.PINECONE_API_KEY,
-  PINECONE_ENVIRONMENT: process.env.PINECONE_ENVIRONMENT,
 };

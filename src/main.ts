@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as admin from 'firebase-admin';
 import { ServiceAccount } from 'firebase-admin';
-import serviceData from '../serviceAccount.json';
+import serviceData from './serviceAccount.json';
 import { ENV } from './constants/env';
 
 async function bootstrap() {
@@ -20,6 +20,8 @@ async function bootstrap() {
 
   // await createPineconeIndexAndCollection();
   app.enableCors();
-  await app.listen(ENV.PORT, () => console.log(`Server is running on port ${ENV.PORT}🔥`));
+  await app.listen(ENV.PORT, () =>
+    console.log(`Server is running on port ${ENV.PORT}🔥`),
+  );
 }
 bootstrap();

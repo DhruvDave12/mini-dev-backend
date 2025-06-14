@@ -3,7 +3,7 @@ import { ENV } from './env';
 
 export const pinecone = new Pinecone({
   apiKey: ENV.PINECONE_API_KEY,
-  environment: ENV.PINECONE_ENVIRONMENT,
+  maxRetries: 5,
 });
 
 export const createPineconeIndexAndCollection = async () => {
@@ -16,7 +16,12 @@ export const createPineconeIndexAndCollection = async () => {
     name: 'mini_dev_index',
     dimension: 512,
     metric: 'cosine',
-    sourceCollection: 'mini_dev_collection',
+    spec: {
+      serverless: {
+        cloud: 'aws',
+        region: 'us-east-1',
+      },
+    },
   });
 
   await pinecone.describeIndex('mini_dev_index');
